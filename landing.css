@@ -1,1 +1,66 @@
 /* Landing Page CSS */
+body{
+    background-color: #fae2d3;
+    margin-top: 1em;
+}
+.logo{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgba(207, 175, 107, 0.616);
+    text-align: center;
+}
+.login{
+border-radius:1.5em ;
+border-width: 0.4em;
+border-color: rgb(114, 56, 56);
+border-style: solid;
+text-align: center;
+background-color: #fff7df;
+width: 48em;
+height: 25em;
+padding-top: 2em;
+margin-left: 26em;
+margin-top: 2em;
+}
+
+.insideuser{
+    border-radius:3em ;
+    border-width: 0.2em;
+    border-color: rgb(114, 56, 56);
+    border-style: solid;
+    padding-top: 5em;
+    background-color: #f3c8bf9d;
+    width: 30em;
+    height: 18em;
+    margin-left: 8.5em ;
+}
+
+.username{ 
+  
+  text-align: center;
+} 
+.password{
+    padding: 1em;
+    align-items: center;
+}
+
+.loginbtn{
+    width: 5em;
+}
+
+.userinput, .passinput, .loginbtn, .regbtn{
+font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: #fff7df;
+border-radius: 3em;
+height: 3em;
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;
+accent-color: pink;
+}
+
+::placeholder{
+    font-weight: bold;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #fff7df;
+}
+

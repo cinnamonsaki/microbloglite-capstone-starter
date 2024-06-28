@@ -38,7 +38,7 @@ function login(loginData) {
         body: JSON.stringify(loginData),
     }).then(response => response.json()).then(loginData => {
         if (loginData.hasOwnProperty("message")) {
-            error.innerHTML = loginData.statusCode + " - " + loginData.message;
+            error.innerHTML = loginData.message;
             return;
         }
         error.innerHTML = "";
