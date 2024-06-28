@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="auth.js"></script>
+</head>
+<body>
+
+    <div id="username">
+        SAKI01
+    </div>
+
+    <form name="myForm" id="myForm">
+        <h5>Upload Profile Picture</h5>
+        <input type="file" id="pfpFile" accept="image/*">
+        <div id="pfpInput"></div>
+
+        <label for="bio">Bio:</label>
+        <input type="text" id="bio" name="bio">
+        <br>
+        <br>
+        <div id="updateBio"> </div>
+        <button type="submit" id="submit">Submit</button>
+       
+    </form>
+
+    <form id="postForm" name="postForm">
+        <textarea id="postContent" name="postContent" placeholder="Create your post" required></textarea>
+        <button id="btnSend" type="submit">Post</button>
+
+        <div id="postText">
+            ?
+        </div>
+    </form>
+
+    <button id="logoutButton">Logout</button>
+
+    <script>
+
+document.getElementById('myForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const bioContent = document.getElementById('bio').value;
+
+    const bioData = {
+        bio: bioContent
+    };
+
+    const bioStr = JSON.stringify(bioData);
+
+    updateAndShowBio(bioStr);
+});
+
+function updateAndShowBio(bioStr) {
+    fetch(apiBaseURL + "/api/users/" + localStorage.username, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.token
+        },
+        body: bioStr
+    })
+    .then(resp => {
+        if (!resp.ok) {
+            throw new Error('Could not load bio');
+        }
+        return resp.json();
+    }) 
+    .then(data => {
+        console.log('Successfully updated bio', data);
+        // Assuming the bio data is in data.bio
+        document.getElementById('updateBio').innerText = data.bio;
+    })
+    .catch(error => {
+        console.error('Error submitting bio:', error);
+    });
+
+}
+
+
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const postContent = document.getElementById('postContent').value;
+
+            const postData = {
+                text: postContent
+            };
+
+            const postStr = JSON.stringify(postData);
+
+            fetch(apiBaseURL + '/api/posts/', {
+                method: "POST",
+                body: postStr,
+                headers: {
+                    'Authorization': "Bearer " + localStorage.token,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Post submitted successfully:', data);
+                loadPosts(); // Reload posts after submitting a new one
+            })
+            .catch(error => {
+                console.error('Error submitting post:', error);
+            });
+        });
+
+        function loadPosts() {
+           const username = localStorage.username;
+            const postTexts = document.getElementById("postText");
+ 
+            fetch(apiBaseURL + "/api/posts/", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': "Bearer " + localStorage.token
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+             const posts = data.filter(post => post.username === username)
+
+                postTexts.innerHTML = posts.map(({ username, text, createdAt }) => {
+                    return `
+                        <div>Username: ${username}</div>
+                        <div>Text: ${text}</div>
+                        <div>Created At: ${createdAt}</div>
+                        <hr/>`;
+                }).join('');
+
+                console.log("Posts fetched:", posts);
+            })
+            .catch(error => {
+                console.error("Error loading posts:", error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPosts();
+        });
+        
+        function getLoginData() {
+            // This function should return the login data which includes the token.
+            // Implement this function based on how you store your login data.
+            return JSON.parse(window.localStorage.getItem("login-data"));
+        }
+
+        function logout() {
+            const loginData = getLoginData();
+            const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";  // Make sure this is defined
+
+            // GET /auth/logout
+            const options = { 
+                method: "GET",
+                headers: { 
+                    Authorization: `Bearer ${loginData.token}`,
+                },
+            };
+
+            fetch(apiBaseURL + "/auth/logout", options)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .finally(() => {
+                    window.localStorage.removeItem("login-data");  // remove login data from LocalStorage
+                    window.location.assign("/");  // redirect back to landing page
+                });
+        }
+
+        document.getElementById("logoutButton").addEventListener("click", logout);
+    </script>
+
+</body>
+</html>

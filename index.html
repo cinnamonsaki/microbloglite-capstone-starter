@@ -23,7 +23,7 @@
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="./auth.js"></script>
     <script>
-        if (isLoggedIn() === true) window.location.replace("/posts");
+        // if (isLoggedIn() === true) window.location.replace("/posts");
     </script>
 </head>
 <body>
@@ -32,8 +32,8 @@
         <h1>Welcome to <code>YOUR MICROBLOG NETWORK</code></h1>
     </header>
 
-    <main>
-
+    <main></main>
+        <div id="error"></div>
         <form id="login">
             <div>
                 <label for="username">Username</label>
@@ -47,6 +47,9 @@
 
             <button id="loginButton" type="submit">Login</button>
         </form>
+        <a href = "register.html">
+            <button> Register</button>
+        </a>
 
     </main>
 

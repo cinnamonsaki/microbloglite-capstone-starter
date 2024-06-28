@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="auth.js"></script>
+</head>
+<body>
+    <h1>CREATE AN ACCOUNT</h1>
+    <form id="formRegister">
+
+        <div id="error">?</div>
+
+         <label for="username">username:
+            <input type="text" id="username" placeholder="Enter Username" required>    
+         </label>
+        <br>
+
+        <label for="fullName">username:
+            <input id="fullName" name="fullName" placeholder="Enter full name">    
+         </label>
+        <br>
+
+         <label for="password" placeholder="Enter Password">password:
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>
+         </label>
+ 
+         <br>
+         
+         <label for="passwordConfirm"> confirm password:
+            <input type="password" name="confirm_password" id="confirm" placeholder="Enter Password" required>
+        </label>
+        <br>
+        <button name="regSubmit" id="regSubmit">submit</button>
+    </form>
+<!-- on submit take them to log in page  -->
+
+
+
+  <!-- {
+  "username": "string",
+  "fullName": "string",
+  "bio": "string",
+  "createdAt": "2024-06-27T12:52:06.176Z",
+  "updatedAt": "2024-06-27T12:52:06.176Z"
+} -->
+    <script>
+
+const loginForm = document.querySelector("#login");
+// const errorE = document.getElementById('error');
+
+
+
+    //  Prevents page from reloading when submit
+    document.getElementById('formRegister').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
+
+    const usernameVal = document.getElementById('username').value;
+    const fullNameVal = document.getElementById('fullName').value;
+    const passwordVal = document.getElementById('password').value;
+
+    const registerContent = {
+        username: usernameVal,
+        fullName: fullNameVal,
+        password: passwordVal
+    };
+  
+    const registerData = JSON.stringify(registerContent);
+    
+    register(registerData);
+});
+
+function register(registerData){
+       fetch(apiBaseURL + '/api/users/', {
+        method: "POST",
+        body: registerData,
+        headers: {
+              'Content-Type': 'application/json',
+                'Accept': 'application/json'
+        }
+
+       })
+       .then(resp =>{
+        if (!resp.ok){
+            throw new Error('Could not register user');
+        }
+        return resp.json();
+       })
+       .then (data =>{
+        console.log('User successfully registered', data);
+
+        window.location.href = 'index.html';
+       })
+       .catch(error =>{
+        console.error('Error registering user', error)
+       });
+
+}
+
+
+
+    </script>
+</body>
+</html>

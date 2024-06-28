@@ -3,6 +3,7 @@
 "use strict";
 
 const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNha2kwMSIsImlhdCI6MTcxOTQ5OTM1OCwiZXhwIjoxNzE5NTg1NzU4fQ.hWtpW_vDAD9rpS7X9wzDYM0Fl28bS9OqurVM7dDpdjY" ;
 // Backup server (mirror):   "https://microbloglite.onrender.com"
 
 // NOTE: API documentation is available at /docs 
@@ -22,7 +23,7 @@ function getLoginData () {
 // logged in. It returns either `true` or `false`.
 function isLoggedIn () {
     const loginData = getLoginData();
-    return Boolean(loginData.token);
+    return Boolean(localStorage.token);
 }
 
 
@@ -30,35 +31,23 @@ function isLoggedIn () {
 // landing page, in order to process a user's login. READ this code,
 // and feel free to re-use parts of it for other `fetch()` requests
 // you may need to write.
-function login (loginData) {
-    // POST /auth/login
-    const options = { 
+function login(loginData) {
+    return fetch(apiBaseURL + "/auth/login", {
         method: "POST",
-        headers: {
-            // This header specifies the type of content we're sending.
-            // This is required for endpoints expecting us to send
-            // JSON data.
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json", },
         body: JSON.stringify(loginData),
-    };
-
-    return fetch(apiBaseURL + "/auth/login", options)
-        .then(response => response.json())
-        .then(loginData => {
-            if (loginData.message === "Invalid username or password") {
-                console.error(loginData)
-                // Here is where you might want to add an error notification 
-                // or other visible indicator to the page so that the user is  
-                // informed that they have entered the wrong login info.
-                return null
-            }
-
-            window.localStorage.setItem("login-data", JSON.stringify(loginData));
-            window.location.assign("/posts");  // redirect
-
-            return loginData;
-        });
+    }).then(response => response.json()).then(loginData => {
+        if (loginData.hasOwnProperty("message")) {
+            error.innerHTML = loginData.statusCode + " - " + loginData.message;
+            return;
+        }
+        error.innerHTML = "";
+        // window.localStorage.setItem("login-data", JSON.stringify(loginData));
+        window.localStorage.token = loginData.token; //simple string
+        window.localStorage.username = loginData.username; //simple string
+        window.location.assign("/posts");  // redirect
+        return loginData;
+    });
 }
 
 
@@ -73,10 +62,6 @@ function logout () {
     const options = { 
         method: "GET",
         headers: { 
-            // This header is how we authenticate our user with the
-            // server for any API requests which require the user
-            // to be logged-in in order to have access.
-            // In the API docs, these endpoints display a lock icon.
             Authorization: `Bearer ${loginData.token}`,
         },
     };
@@ -85,10 +70,6 @@ function logout () {
         .then(response => response.json())
         .then(data => console.log(data))
         .finally(() => {
-            // We're using `finally()` so that we will continue with the
-            // browser side of logging out (below) even if there is an 
-            // error with the fetch request above.
-
             window.localStorage.removeItem("login-data");  // remove login data from LocalStorage
             window.location.assign("/");  // redirect back to landing page
         });

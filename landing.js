@@ -3,11 +3,10 @@
 "use strict";
 
 const loginForm = document.querySelector("#login");
+// const errorE = document.getElementById('error');
 
-loginForm.onsubmit = function (event) {
-    // Prevent the form from refreshing the page,
-    // as it will do by default when the Submit event is triggered:
-    event.preventDefault();
+loginForm.onsubmit = function (e) {
+    e.preventDefault();
 
     // We can use loginForm.username (for example) to access
     // the input element in the form which has the ID of "username".
