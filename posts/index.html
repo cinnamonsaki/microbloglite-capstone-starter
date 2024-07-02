@@ -28,16 +28,26 @@
     </script>
 </head>
 <body>
+<header>
+<div class="logo">
+<h5>HONEY GRAM</h5>
+<img src="https://i.pinimg.com/originals/47/d2/29/47d22916f79787b064d34ce5469fd48c.png" height="40">
+</div>
+<!-- <a class="profbtn" href="/profile.html"><button>profile</button></a> -->
+<a href ="/profile.html">
+    <button class="profbtn" type="button">profile</button>
+</a>
+<button class="logout" id="logoutButton">logout</button>
+ </header>
     <form id="postForm" name="postForm">
-        <textarea id="postContent" name="postContent" placeholder="create your post" required> </textarea>
-        <button id="btnSend" type="submit">Post</button>
+        <textarea class="posttxt" id="postContent" name="postContent" placeholder="create your post" required> </textarea>
+        <button class="submit" id="btnSend" type="submit">Post</button>
     </form>
 
-    <div id="postText">
+    <div class="post" id="postText">
     </div>
-    
-    <button id="logoutButton">Logout</button>
 
+    <button class="logout" id="logoutButton">logout</button>
 
     <script src="./posts.js"></script>
 </body>

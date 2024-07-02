@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>profile</title>
+    <link rel="stylesheet" href="profile.css">
     <script src="auth.js"></script>
 </head>
 <body>
-
-    <div id="username">
-        SAKI01
-    </div>
-
+    <header>
+        <h4>HONEY GRAM</h4>
+        <a href ="posts/index.html">
+            <button class="postpage" type="button">chat</button>
+        </a>      
+    </header>
+<div class="pfp1">
     <form name="myForm" id="myForm">
         <h5>Upload Profile Picture</h5>
-        <input type="file" id="pfpFile" accept="image/*">
-        <div id="pfpInput"></div>
+        <div class="pfp">
+            <img src="https://4.bp.blogspot.com/-fUmdu5H73h4/VSgNxiDYRYI/AAAAAAAABRA/ZZfUe0RDWTs/s1600/Keroro%2BGunsou%2B306.avi_snapshot_09.13_[2015.04.10_19.11.06].png" width="300">
+        </div>
+        <br>
+        <input class="inputfile" type="file" id="pfpFile" accept="image/*">
+ </div>
 
-        <label for="bio">Bio:</label>
-        <input type="text" id="bio" name="bio">
+ <div class="bio">
+        <label for="bio"></label>
+        <input class="inputbio" type="text" id="bio" name="bio" placeholder="insert your bio">
         <br>
         <br>
-        <div id="updateBio"> </div>
-        <button type="submit" id="submit">Submit</button>
-       
+        <div class="updatebio" id="updateBio"> ʕ•ᴥ•ʔ </div>
+        <button class="submit" type="submit" id="submit">submit</button>
+ </div>     
     </form>
-
+<div class="post">
     <form id="postForm" name="postForm">
-        <textarea id="postContent" name="postContent" placeholder="Create your post" required></textarea>
-        <button id="btnSend" type="submit">Post</button>
+        <textarea class="createpost"  id="postContent" name="postContent" placeholder="Create your post" required></textarea>
+        <button class="btnpost"  id="btnSend" type="submit">Post</button>
 
         <div id="postText">
-            ?
+            
         </div>
     </form>
-
-    <button id="logoutButton">Logout</button>
+</div>
+    <button class="logoutbtn"  id="logoutButton">Logout</button>
 
     <script>
 
@@ -137,10 +145,11 @@ function updateAndShowBio(bioStr) {
 
                 postTexts.innerHTML = posts.map(({ username, text, createdAt }) => {
                     return `
-                        <div>Username: ${username}</div>
-                        <div>Text: ${text}</div>
-                        <div>Created At: ${createdAt}</div>
-                        <hr/>`;
+                    <br>
+                        <div class="user">Username: ${username}</div>
+                        <div class="text">${text}</div>
+                        <div class="date">Created At: ${createdAt}</div>
+                        <hr>`;
                 }).join('');
 
                 console.log("Posts fetched:", posts);

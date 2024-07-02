@@ -41,8 +41,8 @@ function login(loginData) {
             error.innerHTML = loginData.message;
             return;
         }
-        error.innerHTML = "";
-        // window.localStorage.setItem("login-data", JSON.stringify(loginData));
+        error.innerHTML = " ";
+        window.localStorage.setItem("login-data", JSON.stringify(loginData));
         window.localStorage.token = loginData.token; //simple string
         window.localStorage.username = loginData.username; //simple string
         window.location.assign("/posts");  // redirect

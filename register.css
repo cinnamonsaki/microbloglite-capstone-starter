@@ -1,31 +1,33 @@
-/* Landing Page CSS */
 body{
     background-color: #fae2d3;
     margin-top: 1em;
 }
-h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.logo, h1{
+h1, .logo{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
     color: rgba(207, 175, 107, 0.616);
     text-align: center;
-}
-.login{
-margin: 0 auto;
-width: ;
-border-radius:1.5em;
-border-width: 0.4em;
-border-color: rgb(114, 56, 56);
-border-style: solid;
-text-align: center;
-background-color: #fff7df;
-width: 48em;
-height: 25em;
-padding-top: 2em;
-
+    align-content: center;
 }
 
+.regText{
+    color:rgb(114, 56, 56);
+    font-weight: 500;
+}
+
+.register{
+    margin: 0 auto;
+    width: ;
+    border-radius:1.5em;
+    border-width: 0.4em;
+    border-color: rgb(114, 56, 56);
+    border-style: solid;
+    text-align: center;
+    background-color: #fff7df;
+    width: 48em;
+    height: 31em;
+    padding-top: 2em;
+}
 .insideuser{
     border-radius:3em ;
     border-width: 0.2em;
@@ -38,19 +40,9 @@ padding-top: 2em;
     margin-left: 8.5em ;
 }
 
-.username{ 
-  text-align: center;
-} 
-.password{
-    padding: 1em;
-    align-items: center;
-}
 
-.loginbtn{
-    width: 5em;
-}
-
-.userinput, .passinput, .loginbtn, .regbtn{
+.input, .submit{
+margin-top: 1em;
 font-weight: bold;
 font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 color: #fff7df;
@@ -66,4 +58,3 @@ accent-color: pink;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #fff7df;
 }
-

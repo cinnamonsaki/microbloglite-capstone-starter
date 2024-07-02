@@ -42,39 +42,77 @@
     });
     
         //loading posts
-
-        
         function loadPosts(){
             let postTexts = document.getElementById("postText");
             let posts;
-        fetch(apiBaseURL + "/api/posts/", {
-            headers: {
-                'Accept': 'application/json',
-                'Authorization': "Bearer " + localStorage.token
-            }
-        })
-        .then(resp => {
-            if (!resp.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return resp.json(); 
-        })
-        .then((data) => {
+            const maxPosts = 30; // Set the maximum number of posts to display
+        
+            fetch(apiBaseURL + "/api/posts/", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': "Bearer " + localStorage.token
+                }
+            })
+            .then(resp => {
+                if (!resp.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return resp.json(); 
+            })
+            .then((data) => {
+                posts = data;
+        
+                // Limit the number of posts displayed to maxPosts
+                const limitedPosts = posts.slice(0, maxPosts);
+        
+                postTexts.innerHTML = limitedPosts.map(({username, text, createdAt}) => {
+                    return `
+                        <div class="user">Username: ${username}</div>
+                        <div class="text">${text}</div>
+                        <div class="date">Created At: ${createdAt}</div>
+                        <hr/>
+                    `;
+                }).join('');
+                
+                console.log("Posts fetched:", limitedPosts);
+            })
+            .catch(error => console.error("Error loading posts:", error));
+        }
+
+        
+    //     function loadPosts(){
+    //         let postTexts = document.getElementById("postText");
+    //         let posts;
+    //     fetch(apiBaseURL + "/api/posts/", {
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Authorization': "Bearer " + localStorage.token
+    //         }
+    //     })
+    //     .then(resp => {
+    //         if (!resp.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         return resp.json(); 
+    //     })
+    //     .then((data) => {
      
-             posts = data;
+    //          posts = data;
           
-            postTexts.innerHTML = posts.map(({username, text, createdAt})=>{
-                return `
-                    <div>Username: ${username}</div>
-                    <div>Text: ${text}</div>
-                    <div>Created At: ${createdAt}</div>
-                    <hr/>`;
-            }).join('')
+    //         postTexts.innerHTML = posts.map(({username, text, createdAt})=>{
+    //             return `
+              
+    //                 <div class="user">Username: ${username}</div>
+    //                 <div class="text">${text}</div>
+    //                 <div class="date">Created At: ${createdAt}</div>
+    //                 <hr/>
+    //                 `;
+    //         }).join('')
          
-            console.log("Posts fetched:", posts);
-        })
-        .catch(error => console.error("Error loading posts:", error));
-    }
+    //         console.log("Posts fetched:", posts);
+    //     })
+    //     .catch(error => console.error("Error loading posts:", error));
+    // }
     
     // loads posts after certain amount of time
     // DEFAULT!! find another way

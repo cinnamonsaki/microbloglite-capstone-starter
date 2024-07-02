@@ -3,57 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="register.css">
+    <title>Become a honey bear</title>
     <script src="auth.js"></script>
 </head>
 <body>
-    <h1>CREATE AN ACCOUNT</h1>
-    <form id="formRegister">
+    <div class="logo">
+        <h1 class="honey">HONEY GRAM</h1>
+        <img class="img" src="https://i.pinimg.com/originals/47/d2/29/47d22916f79787b064d34ce5469fd48c.png" height="120" alt="bear logo">
+    </div>
+    <form class="form" id="formRegister">
+<div class="register">
+        <div class="error" id="error"> </div>
+      <div>
+        <div class="regText">become a honey bear today</div>
+        <br>
+    <div class="insideuser">
+     
+         <label  for="username">♥
+            <input autocomplete="on" class="input" type="text" id="username" placeholder="enter username" required>    
+         </label>
+    <br>
 
-        <div id="error">?</div>
-
-         <label for="username">username:
-            <input type="text" id="username" placeholder="Enter Username" required>    
+        <label for="fullName">♥
+            <input class="input"   id="fullName" name="fullName" placeholder="enter full name" required>    
          </label>
         <br>
 
-        <label for="fullName">username:
-            <input id="fullName" name="fullName" placeholder="Enter full name">    
-         </label>
-        <br>
-
-         <label for="password" placeholder="Enter Password">password:
-            <input type="password" name="password" id="password" placeholder="Enter Password" required>
+         <label for="password" placeholder="Enter Password">♥
+            <input class="input"   type="password" name="password" id="password" placeholder="enter Password" required>
          </label>
  
          <br>
          
-         <label for="passwordConfirm"> confirm password:
-            <input type="password" name="confirm_password" id="confirm" placeholder="Enter Password" required>
+         <label for="passwordConfirm"> ♥
+            <input class="input" type="password" name="confirm_password" id="passwordConfirm" placeholder="confirm password" required>
         </label>
-        <br>
-        <button name="regSubmit" id="regSubmit">submit</button>
+    </div>
+        
+        <button type="submit" class="submit" name="regSubmit" id="regSubmit">submit</button>
+</div>
     </form>
 <!-- on submit take them to log in page  -->
-
-
-
-  <!-- {
-  "username": "string",
-  "fullName": "string",
-  "bio": "string",
-  "createdAt": "2024-06-27T12:52:06.176Z",
-  "updatedAt": "2024-06-27T12:52:06.176Z"
-} -->
     <script>
 
 const loginForm = document.querySelector("#login");
-// const errorE = document.getElementById('error');
+
 
 
 
     //  Prevents page from reloading when submit
-    document.getElementById('formRegister').addEventListener('submit', function(e) {
+  document.getElementById('formRegister').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const apiBaseURL = "http://microbloglite.us-east-2.elasticbeanstalk.com";
@@ -81,13 +81,11 @@ function register(registerData){
               'Content-Type': 'application/json',
                 'Accept': 'application/json'
         }
-
-       })
-       .then(resp =>{
-        if (!resp.ok){
-            throw new Error('Could not register user');
+       }).then(resp => resp.json()).then(registerData =>{
+        if(registerData.hasOwnProperty('message')){
+            error.innerHTML = registerData.message;
+            return resp.json()
         }
-        return resp.json();
        })
        .then (data =>{
         console.log('User successfully registered', data);
@@ -99,8 +97,6 @@ function register(registerData){
        });
 
 }
-
-
 
     </script>
 </body>

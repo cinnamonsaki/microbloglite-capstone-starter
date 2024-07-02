@@ -1,1 +1,97 @@
-/* Posts Page CSS */
+body{
+    background-color: #fae2d3a9;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* cant figure out how to align logo */
+
+header {
+    display: flex;
+    align-items: flex-start; 
+    justify-content: space-between; 
+    padding: 0 1em;
+    margin-bottom: 1em;
+}
+
+.profbtn, .logout {
+    text-decoration: none;
+    margin-right:1em;
+    margin-top: 1em;
+    font-weight: bold;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #fff7df;
+    border-radius: 3em;
+    height: 3em;
+    background-color:rgb(114, 79, 79); 
+    color: #f8ddcd;
+    accent-color: pink; 
+}
+
+.logo {
+    color: rgba(207, 175, 107, 0.616);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+    text-align: center; 
+    margin: auto; 
+ 
+}
+.post{
+    margin: 0 auto;
+    margin-top: 3em;
+    border-radius:1.5em;
+    border-width: 0.4em;
+    border-color: rgb(114, 56, 56);
+    border-style: solid;
+    text-align: center;
+    background-color: #fff7df;
+    width: 48em;
+    /* height: em; */
+    padding-top: 2em;
+}
+.text{
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+.user{
+    color:  rgb(114, 56, 56);
+    font-weight: bold;
+}
+
+.date{
+    color: rgb(139, 119, 75);
+}
+#postForm {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.posttxt{
+    justify-content: center;
+    width: 80%; 
+    max-width: 600px; 
+    margin-bottom: 1em; 
+    justify-items: center;
+    background-color: rgb(97, 40, 40);
+    align-items: center;
+ 
+}
+.submit{
+margin: 0 auto;
+width:5em ;
+font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: #fff7df;
+border-radius: 3em;
+height: 3em;
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;
+accent-color: pink;
+}

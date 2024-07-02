@@ -1,0 +1,114 @@
+
+body {
+    background-color: #fceeed;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #ddc1b32c;
+    text-align: center;
+    vertical-align: top;
+    padding: 1em 0;
+}
+
+h4 {
+    font-size: large;
+    color: rgba(223, 192, 132, 0.616);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 500;
+}
+h5{
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: rgb(95, 68, 27);
+}
+.postpage{
+font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: #fff7df59;
+border-radius: 3em;
+height: 3em;
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;S
+accent-color: pink;
+}
+.pfp1, .bio{
+   margin-top: 2em;
+   margin-left: 60em;
+   text-align: right;
+   margin-right: 3rem;
+}
+.inputfile, ::-webkit-file-upload-button{
+width: 10em;
+font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: #fff7df;
+border-radius: 3em;
+height: 3em;
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;
+accent-color: pink;
+}
+.inputbio{
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;
+accent-color: pink;
+height: 5em;
+border-radius: 2em;
+}
+::placeholder{
+color:rgba(240, 223, 198, 0.678);
+font-weight: bold;
+margin-left: 1em;
+}
+.submit, .btnpost, .logoutbtn{
+margin-top: 3em;
+margin-top: 1em;
+font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: #fff7df;
+border-radius: 3em;
+height: 3em;
+background-color:rgb(114, 79, 79); 
+color: #f8ddcd;
+accent-color: pink;
+}
+.post{
+position: relative;
+bottom: 30em;
+border-style: solid;
+padding: 2em;
+margin-left:5em;
+border-radius:1.5em;
+border-width: 0.4em;
+border-color: rgb(114, 56, 56);
+text-align: center;
+background-color: #fff7df;
+width: 48em;
+}
+.createpost{
+    margin-bottom: 2em;
+    background-color:rgb(114, 79, 79);
+    width: 15em;
+    height: 5em;
+    border-radius: 0.7rem;
+}
+.logoutbtn{
+  margin-left: 2em;
+  margin-bottom: 2em;
+}
+.text{
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+.user{
+    color:  rgb(114, 56, 56);
+    font-weight: bold;
+}
+
+.date{
+    color: rgb(139, 119, 75);
+}
