@@ -1,5 +1,15 @@
-# Enjoy the Microblog Project and the MicroblogLite API!
+Assata Alayande
+# microblog site
+Name: Assata Alayande
+# register page
+This page was all about getting the post to work and showing the error mesages it might have
+![Screenshot of register page](images/registerpage.png)
+# login page
+![Screenshot of login](images/loginpage.png)
+# posts page
+posts
+![screenshot of postsPage](images/postpage.png)
+# profile page 
+![screenshot of profile page](images/profilepage.png)
 
-Don't forget to read the [*MicroblogLite* API docs](http://microbloglite.us-east-2.elasticbeanstalk.com/docs) and experiment with the API in *Postman!*
-
-Practice and experimentation provide experience, and experience provides confidence.
+I think i had most fun getting the page to function in the time we had, small changes here and there, finding out all i was missing was a slash was the funniest part. I thought I would have to redo the whole code but, I still had fun. My favorite piece of code would be thr code where only the posts you make will show up on ur profile.
